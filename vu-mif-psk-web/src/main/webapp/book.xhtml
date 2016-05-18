@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
+<h:head></h:head>
+<h:body>
+  <f:event type="preRenderView" listener="#{facesContext.externalContext.response.setHeader('Cache-Control', 'no-cache, no-store')}" />
+  <h1>Book</h1>
+  <h:form id="bookForm">
+    Name: <h:inputText value="#{bookController.book.name}"></h:inputText>
+    <br />
+    Last name: <h:inputText value="#{bookController.book.author}"></h:inputText>
+    <br />
+    Count: <h:inputText value="#{bookController.book.count}" converterMessage="Please enter digits only."></h:inputText>
+    <br />
+    <h:commandButton type="submit" value="Save" action="#{bookController.store}">
+      <f:ajax execute="@form" render="@form" />
+    </h:commandButton>
+    <h:message for="bookForm" style="color: red" />
+  </h:form>
+</h:body>
+</html>

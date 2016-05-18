@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
+<f:event listener="#{actionController.initConversation}" type="preRenderView"></f:event>
+<h:head></h:head>
+<h:body>
+  <h1>Action</h1>
+  <h:form>
+    Action type: 
+    <h:selectOneMenu value="#{actionController.action.actionType}" hideNoSelectionOption="true">
+      <f:selectItems value="#{actionController.actionTypes}" var="type" itemLabel="#{type}" itemValue="#{type}" />
+      <f:ajax render="@all" />
+    </h:selectOneMenu>
+    <br />
+
+    User: 
+    <h:selectOneMenu value="#{actionController.action.customer}" hideNoSelectionOption="true" converter="#{actionController.entityConverter}">
+      <f:selectItems value="#{actionController.users}" var="user" itemLabel="#{user.name} #{user.lastName}" itemValue="#{user}" />
+      <f:ajax render="@all" />
+    </h:selectOneMenu>
+    <br />
+  <h:commandLink action="#{actionController.next}" value="Continue with this message" />
+  </h:form>
+</h:body>
+</html>

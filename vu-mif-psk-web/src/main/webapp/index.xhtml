@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
+<h:head></h:head>
+<h:body>
+  <f:event type="preRenderView" listener="#{facesContext.externalContext.response.setHeader('Cache-Control', 'no-cache, no-store')}" />
+  <h1>Customers</h1>
+  <h:form>
+    <h:dataTable value="#{indexController.users}" var="user" frame="box" rules="all">
+      <h:column>
+        <f:facet name="header">
+          <h:outputText value="Name" />
+        </f:facet>
+        <h:outputText value="#{user.name}" />
+      </h:column>
+      <h:column>
+        <f:facet name="header">
+          <h:outputText value="Last name" />
+        </f:facet>
+        <h:outputText value="#{user.lastName}" />
+      </h:column>
+      <h:column>
+        <f:facet name="header">
+          <h:outputText value="Books count" />
+        </f:facet>
+        <h:outputText value="#{user.booksCount}" />
+      </h:column>
+      <h:column>
+        <f:facet name="header" />
+        <h:commandLink value="edit" action="#{indexController.navigate('customer', user.id)}" />
+      </h:column>
+    </h:dataTable>
+    <h:commandButton value="New customer" action="customer" />
+  </h:form>
+
+  <h1>Books</h1>
+  <h:form>
+    <h:dataTable value="#{indexController.books}" var="book" frame="box" rules="all">
+      <h:column>
+        <f:facet name="header">
+          <h:outputText value="Name" />
+        </f:facet>
+        <h:outputText value="#{book.name}" />
+      </h:column>
+      <h:column>
+        <f:facet name="header">
+          <h:outputText value="Author" />
+        </f:facet>
+        <h:outputText value="#{book.author}" />
+      </h:column>
+      <h:column>
+        <f:facet name="header">
+          <h:outputText value="Count" />
+        </f:facet>
+        <h:outputText value="#{book.count}" />
+      </h:column>
+      <h:column>
+        <f:facet name="header" />
+        <h:commandLink value="edit" action="#{indexController.navigate('book', book.id)}" />
+      </h:column>
+    </h:dataTable>
+    <h:commandButton value="New book" action="book" />
+  </h:form>
+
+  <h1>Actions</h1>
+  <h:form>
+    <h:dataTable value="#{indexController.actions}" var="action" frame="box" rules="all">
+      <h:column>
+        <f:facet name="header">
+          <h:outputText value="Action type" />
+        </f:facet>
+        <h:outputText value="#{action.actionType}" />
+      </h:column>
+      <h:column>
+        <f:facet name="header">
+          <h:outputText value="Action date" />
+        </f:facet>
+        <h:outputText value="#{action.actionDate}" />
+      </h:column>
+      <h:column>
+        <f:facet name="header">
+          <h:outputText value="Customer name" />
+        </f:facet>
+        <h:outputText value="#{action.customer.name}" />
+      </h:column>
+      <h:column>
+        <f:facet name="header">
+          <h:outputText value="Customer last name" />
+        </f:facet>
+        <h:outputText value="#{action.customer.lastName}" />
+      </h:column>
+      <h:column>
+        <f:facet name="header" />
+        <h:commandLink value="view" action="#{indexController.navigate('view_action', action.id)}" />
+      </h:column>
+    </h:dataTable>
+    <h:commandButton value="New action" action="action" />
+  </h:form>
+
+</h:body>
+</html>
